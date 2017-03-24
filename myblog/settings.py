@@ -27,7 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
+SITE_ID =1
 # Application definition
 
 INSTALLED_APPS = [
@@ -37,6 +37,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'blog',
+    'taggit',
+    'django.contrib.sites',
+    'django.contrib.sitemaps',
+    'haystack',
 ]
 
 MIDDLEWARE = [
@@ -105,8 +110,10 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/1.10/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
+# LANGUAGE_CODE = 'zh-hans'
 
-TIME_ZONE = 'UTC'
+#TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Shanghai'
 
 USE_I18N = True
 
@@ -118,4 +125,18 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = '/blog/static/'
+
+EMAIL_HOST = 'smtp.qq.com'
+EMAIL_HOST_USER = '42461532@qq.com'
+EMAIL_HOST_PASSWORD = 'oneousyznvikcajg'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+
+HAYSTACK_CONNECTIONS ={
+    'default':{
+        'ENGINE': 'haystack.backends.solr_backend.SolrEngine',
+        'URL': 'http://127.0.0.1:8983/solr/blog'
+    },
+}
+
